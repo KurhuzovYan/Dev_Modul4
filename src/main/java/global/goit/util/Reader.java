@@ -13,7 +13,6 @@ public class Reader {
             while ((line = br.readLine()) != null) {
                 builder.append(line).append(System.lineSeparator());
             }
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

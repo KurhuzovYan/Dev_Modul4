@@ -15,7 +15,6 @@ public class DatabaseQueryService {
     public List<MaxProjectCountClient> findMaxProjectsClient() throws SQLException {
         String maxCountOfProjects = getStringFromSQL("sql/find_max_projects_client.sql");
         List<MaxProjectCountClient> maxProjectCountClients = new ArrayList<>();
-
         ResultSet resultSet = getResultSet(maxCountOfProjects);
         while (resultSet.next()) {
             String name = resultSet.getString("name");
@@ -26,56 +25,52 @@ public class DatabaseQueryService {
     }
 
     public List<LongestProject> findLongestProject() throws SQLException {
-        String longestProject = getStringFromSQL("sql/find_longest_project.sql");
-        List<LongestProject> maxProjectCountClients = new ArrayList<>();
-
-        ResultSet resultSet = getResultSet(longestProject);
+        String longest = getStringFromSQL("sql/find_longest_project.sql");
+        List<LongestProject> longestProjects = new ArrayList<>();
+        ResultSet resultSet = getResultSet(longest);
         while (resultSet.next()) {
             int id = resultSet.getInt("project_id");
             int count = resultSet.getInt("month_count");
-            maxProjectCountClients.add(new LongestProject(id, count));
+            longestProjects.add(new LongestProject(id, count));
         }
-        return maxProjectCountClients;
+        return longestProjects;
     }
 
     public List<MaxSalary> findMaxSalary() throws SQLException {
         String salary = getStringFromSQL("sql/find_max_salary_worker.sql");
-        List<MaxSalary> listOfSalaries = new ArrayList<>();
-
+        List<MaxSalary> maxSalary = new ArrayList<>();
         ResultSet resultSet = getResultSet(salary);
         while (resultSet.next()) {
             String name = resultSet.getString("name");
             int wages = resultSet.getInt("salary");
-            listOfSalaries.add(new MaxSalary(name, wages));
+            maxSalary.add(new MaxSalary(name, wages));
         }
-        return listOfSalaries;
+        return maxSalary;
     }
 
     public List<YoungestAndOldest> findYoungestAndOldest() throws SQLException {
         String youngAndOld = getStringFromSQL("sql/find_youngest_eldest_workers.sql");
-        List<YoungestAndOldest> maxSalary = new ArrayList<>();
-
+        List<YoungestAndOldest> youngestAndOldests = new ArrayList<>();
         ResultSet resultSet = getResultSet(youngAndOld);
         while (resultSet.next()) {
             String type = resultSet.getString("type");
             String name = resultSet.getString("name");
             LocalDate date = LocalDate.parse(resultSet.getString("birthday"));
-            maxSalary.add(new YoungestAndOldest(type, name, date));
+            youngestAndOldests.add(new YoungestAndOldest(type, name, date));
         }
-        return maxSalary;
+        return youngestAndOldests;
     }
 
     public List<ProjectPrices> findProjectPrices() throws SQLException {
-        String projectPrice = getStringFromSQL("sql/print_project_prices.sql");
-        List<ProjectPrices> maxSalary = new ArrayList<>();
-
-        ResultSet resultSet = getResultSet(projectPrice);
+        String prices = getStringFromSQL("sql/print_project_prices.sql");
+        List<ProjectPrices> allProjectPrices = new ArrayList<>();
+        ResultSet resultSet = getResultSet(prices);
         while (resultSet.next()) {
             int id = resultSet.getInt("project_id");
             int cost = resultSet.getInt("project_cost");
-            maxSalary.add(new ProjectPrices(id, cost));
+            allProjectPrices.add(new ProjectPrices(id, cost));
         }
-        return maxSalary;
+        return allProjectPrices;
     }
 
     private static ResultSet getResultSet(String sql) throws SQLException {

@@ -10,8 +10,8 @@ public class Database {
     public final static String DB_URL = "jdbc:postgresql://localhost:8080/postgres";
     public final static String DB_USER = "myuser";
     public final static String DB_PASSWORD = "mysecretpassword";
-    private static Database instance;
     private static final Logger LOGGER = LoggerFactory.getLogger(Database.class);
+    private static Database instance;
     private static Connection CONNECTION;
 
     private Database() {
@@ -23,9 +23,9 @@ public class Database {
         }
         try {
             CONNECTION = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-            LOGGER.info("Connect is successful");
+            LOGGER.info("Connection is successful");
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error("Connection problem..", e);
         }
     }
 
