@@ -1,4 +1,4 @@
-package global.goit.controller;
+package global.goit.connection;
 
 import org.apache.log4j.BasicConfigurator;
 import org.slf4j.Logger;

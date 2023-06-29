@@ -42,5 +42,3 @@ CREATE TABLE project_worker
     FOREIGN KEY (project_id) REFERENCES project(project_id),
     FOREIGN KEY (worker_id) REFERENCES worker(worker_id)
 )
-
-
